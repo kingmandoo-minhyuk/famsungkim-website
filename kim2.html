@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim2 - Son-in-law</title>
+    <link rel="stylesheet" href="style.css"> <!-- 메인 페이지와 동일한 CSS 사용 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+</head>
+<body>
+    <header class="member-page-header"> <div class="container header-container"> <div class="member-info"> <h1>Kim 2</h1>
+                <p class="back-link"><a href="index.html">back to main</a></p>
+            </div>
+            <div class="member-social"> <a href="https://www.instagram.com/jwk1100" target="_blank" rel="noopener noreferrer" title="Sung1 Instagram" aria-label="Sung1 Instagram profile">
+                    <i class="fa-brands fa-instagram"></i> </a>
+                </div>
+        </div>
+    </header>
+
+    <main>
+<div class="content-section">
+    <h2>Short Moments</h2> <div class="swiper shorts-swiper"> <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="video-container shorts-container">
+                    <iframe width="315" height="560" src=" https://www.youtube.com/embed/WjCHHKUM0T8 " ...></iframe>
+                </div>
+                <p class="short-caption">쇼츠 1 제목 (선택 사항)</p>
+            </div>
+            <div class="swiper-slide">
+                <div class="video-container shorts-container">
+                    <iframe width="315" height="560" src=" https://www.youtube.com/embed/hbXif4IpWx0 " ...></iframe>
+                </div>
+                <p class="short-caption">쇼츠 2 제목 (선택 사항)</p>
+            </div>
+            <div class="swiper-slide">
+                <div class="video-container shorts-container">
+                    <iframe width="315" height="560" src=" https://www.youtube.com/embed/TPxf7oydY4Q " ...></iframe>
+                </div>
+                <p class="short-caption">쇼츠 3 제목 (선택 사항)</p>
+            </div>
+            </div>
+        <div class="swiper-pagination"></div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</div>
+
+        <div class="content-section">
+            <h2>Introducing</h2>
+<section class="content-section member-bio kim2-bio"> <div class="container bio-container"> 
+                <h2>JUNGWON (a.k.a KIM2)</h2> <div class="bio-flex-container"> <div class="bio-photo">
+                <img src="images/profile_kim2.jpg" alt="김2 프로필 사진">
+            </div>
+            <div class="bio-text" data-aos="fade-up">
+                <p>
+                    If you meet KIM2 for the first time, it might take quite a while before you hear him speak. That's because he's usually quite taciturn and quiet. However, once he starts speaking, you'll find yourself listening intently to the deep inner thoughts hidden beneath his quietness, and soon you'll want to hear more of what he has to say.
+                </p>
+                <p>
+                    KIM2 is very intellectual and knowledgeable – truly a 'brainy guy' ('뇌섹남' as we say in Korean, meaning someone whose intelligence is charming). He possesses a brilliant mind, having graduated from Seoul National University, widely regarded as Korea's top university. One of his amazing abilities is languages; besides Korean, of course, he fluently speaks English, Spanish, Chinese, and Japanese – a total of 5 languages, making him like a 'human translator'!
+                    </p>
+<p>
+He usually enjoys quietly listening to music or reading books in English during his downtime, but recently he has also shown an unexpected side, getting engrossed in watching YouTube and playing games. Fittingly for a music lover, on this family world trip, he's also capably fulfilling the role of music director, responsible for the playlists that enrich our journey.
+</p>
+<p>
+This was KIM2, the charming eldest son-in-law, hiding deep intellect, versatility, and warmth beneath his quiet exterior.
+</p>
+
+            </div>
+        </div> </div> </section>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Copyright 등 푸터 내용 추가 -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+<script>
+    const swiper = new Swiper('.shorts-swiper', { // HTML에서 지정한 클래스 이름 사용
+      // 한 번에 보여줄 슬라이드 개수
+      slidesPerView: 1, // 모바일에서는 1개부터 시작
+      spaceBetween: 15, // 슬라이드 사이 간격
+
+      // 페이지네이션 (점)
+      pagination: {
+        el: '.swiper-pagination', // HTML에 있는 페이지네이션 클래스
+        clickable: true, // 점 클릭해서 이동 가능
+      },
+
+      // 네비게이션 버튼 (화살표)
+      navigation: {
+        nextEl: '.swiper-button-next', // HTML에 있는 다음 버튼 클래스
+        prevEl: '.swiper-button-prev', // HTML에 있는 이전 버튼 클래스
+      },
+
+      // 반응형 설정 (화면 크기별로 옵션 변경)
+      breakpoints: {
+        // 화면 너비 640px 이상일 때
+        640: {
+          slidesPerView: 2, // 2개 보여주기
+          spaceBetween: 20
+        },
+        // 화면 너비 1024px 이상일 때
+        1024: {
+          slidesPerView: 3, // 3개 보여주기 (또는 원하는 개수)
+          spaceBetween: 30
+        }
+        // 필요하다면 더 많은 breakpoint 추가
+      }
+    });
+</script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init(); // AOS 라이브러리 실행
+    </script>
+
+</body>
+</html>

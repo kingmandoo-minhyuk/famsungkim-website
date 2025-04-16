@@ -1,0 +1,923 @@
+/* ----- Google Font Import (예: Noto Sans KR 또는 다른 깔끔한 산세리프 폰트) ----- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+/* ----- 최신 영상 섹션 스타일 ----- */
+.latest-video-section {
+    padding: 80px 20px;
+    background-color: #f9f9f9; /* 배경색 (선택 사항) */
+}
+
+.latest-video-section h2 {
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* 16:9 비율 영상 컨테이너 (재사용 가능) */
+.video-wrapper.aspect-ratio-16-9 {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 800px; /* 영상 최대 너비 (조절 가능) */
+    margin: 0 auto; /* 가운데 정렬 */
+    background: #eee; /* 로딩 중 배경 */
+    border: 1px solid #ddd; /* 테두리 (선택 사항) */
+}
+
+.video-wrapper.aspect-ratio-16-9 iframe,
+.video-wrapper.aspect-ratio-16-9 #latest-youtube-player { /* ID 사용 시 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.video-wrapper.aspect-ratio-16-9 #latest-youtube-player p {
+    /* 로딩 메시지 스타일링 (선택 사항) */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+}
+
+/* ----- 모바일 화면 헤더 간격 조정 ----- */
+
+/* 예시: 화면 너비가 768px 이하일 때 적용 (일반적인 태블릿/모바일 기준) */
+@media (max-width: 768px) {
+    /* 헤더 컨테이너의 좌우 내부 여백(padding)을 약간 줄여서
+       콘텐츠가 너무 답답해 보이지 않게 할 수도 있습니다. (선택 사항) */
+    .site-header .container.header-container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* "Photos" 링크와 소셜 아이콘 그룹 사이의 간격을 줄입니다. */
+    .social-icons {
+        margin-left: 15px; /* 기존 25px에서 줄임 (값 조절 가능) */
+    }
+
+    /* 소셜 아이콘들 사이의 간격을 줄입니다. */
+    .social-icons a {
+        margin-left: 12px; /* 기존 15px에서 줄임 (값 조절 가능) */
+    }
+
+    /* (선택 사항) 공간 확보를 위해 텍스트 링크 사이 간격도 약간 줄일 수 있습니다. */
+    .site-header nav > a { /* nav 바로 아래 a 태그 (Home, About, Photos) */
+         margin-left: 15px; /* 기존 20px에서 줄임 (값 조절 가능) */
+    }
+
+    /* (선택 사항) 공간 확보를 위해 아이콘 크기를 약간 줄일 수 있습니다. */
+    /*
+    .social-icons a {
+        font-size: 1.3em; // 기존 1.4em에서 줄임 (값 조절 가능)
+    }
+    */
+}
+
+
+
+/* 예시: 화면 너비가 더 좁은 경우 (예: 480px 이하) 추가 조정 */
+@media (max-width: 480px) {
+     .site-header .container.header-container {
+        padding-left: 10px; /* 좌우 여백 더 줄임 */
+        padding-right: 10px;
+     }
+     .social-icons {
+        margin-left: 10px; /* 아이콘 그룹 간격 더 줄임 */
+     }
+     .social-icons a {
+        margin-left: 10px; /* 아이콘 간 간격 더 줄임 */
+     }
+     .site-header nav > a {
+         margin-left: 10px; /* 텍스트 링크 간격 더 줄임 */
+         font-size: 0.9em; /* 텍스트 크기 약간 줄임 (선택 사항) */
+     }
+     .social-icons a {
+         font-size: 1.2em; /* 아이콘 크기 약간 줄임 (선택 사항) */
+     }
+}
+
+/* 숨겨진 갤러리 스타일 */
+.hidden-gallery {
+    display: none; /* 요소를 화면에서 완전히 숨김 */
+}
+
+/* 더보기 버튼 컨테이너 스타일 (선택 사항) */
+.load-more-container {
+    text-align: center; /* 버튼 가운데 정렬 */
+    padding: 40px 20px 60px 20px; /* 위아래 여백 조절 */
+}
+
+/* 더보기 버튼 스타일 */
+#load-more-btn {
+    padding: 12px 35px; /* 버튼 크기 */
+    font-size: 1.05em; /* 글자 크기 */
+    font-family: 'Noto Sans KR', sans-serif; /* 폰트 적용 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    background-color: #333; /* 버튼 배경색 */
+    color: #fff; /* 버튼 글자색 */
+    border: none; /* 테두리 없음 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s ease;
+}
+
+#load-more-btn:hover {
+     background-color: #555; /* 마우스 올렸을 때 배경색 */
+}
+
+/* 비활성화된 버튼 스타일 */
+#load-more-btn:disabled {
+     background-color: #ccc; /* 회색 배경 */
+     color: #666; /* 어두운 회색 글자 */
+     cursor: not-allowed; /* 클릭 불가 커서 */
+}
+
+/* ----- 멤버 페이지 헤더 스타일 ----- */
+.member-page-header {
+    padding: 40px 0; /* 헤더 상하 여백 */
+    border-bottom: 1px solid #eee; /* 하단 구분선 (선택 사항) */
+    margin-bottom: 50px; /* 헤더 아래 메인 콘텐츠와의 간격 */
+}
+
+/* 헤더 내부 컨테이너 (콘텐츠 정렬 및 너비 제한) */
+.member-page-header .container.header-container {
+    /* ★★★ 다른 섹션의 .container 와 동일한 max-width, padding 값 사용 권장 ★★★ */
+    max-width: 960px; /* 예시: 다른 컨테이너가 960px이라면 동일하게 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 0 20px; /* 좌우 여백 (다른 컨테이너와 동일하게) */
+    /* --- Flexbox 설정 --- */
+    display: flex;
+    justify-content: space-between; /* 왼쪽(member-info)과 오른쪽(member-social) 요소를 양 끝으로 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+/* 멤버 이름 */
+.member-page-header .member-info h1 {
+    font-size: 2.8em; /* 제목 크기 조절 */
+    margin-bottom: 2px; /* 이름과 아래 링크 사이 간격 줄임 */
+    color: #222;
+    font-weight: 500; /* 또는 700 */
+    line-height: 1.2;
+    text-align: left; /* 명시적 좌측 정렬 */
+}
+
+/* 메인으로 돌아가기 링크 */
+.member-page-header .member-info .back-link {
+    margin-bottom: 0; /* 추가 여백 제거 */
+    text-align: left; /* 명시적 좌측 정렬 */
+}
+
+.member-page-header .member-info .back-link a {
+    font-size: 0.9em;
+    color: #666;
+    text-decoration: none;
+}
+
+.member-page-header .member-info .back-link a:hover {
+    text-decoration: underline;
+}
+
+/* 멤버 소셜 아이콘 (오른쪽) */
+.member-page-header .member-social a {
+    color: #333; /* 아이콘 기본 색상 */
+    text-decoration: none;
+    font-size: 1.8em; /* 아이콘 크기 조절 */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.member-page-header .member-social a:hover {
+    color: #E4405F; /* 호버 시 인스타그램 색상 */
+    transform: scale(1.1); /* 약간 확대 */
+}
+
+
+/* ----- 멤버 소개 (Bio) 섹션 스타일링 ----- */
+.member-bio {
+    background-color: #f0f0f0; /* ★★★ 요청하신 연한 회색 배경 ★★★ */
+    padding: 70px 20px; /* 섹션의 상하좌우 여백 */
+    margin-top: 60px; /* 위 섹션(쇼츠 슬라이더)과의 간격 */
+}
+
+/* 소개 섹션 내부 컨테이너 (선택 사항) */
+.member-bio .bio-container {
+    max-width: 960px; /* 내용 최대 너비 (조절 가능) */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+/* 소개 섹션 제목 */
+.member-bio h2 {
+    text-align: center; /* 제목 가운데 정렬 (또는 left) */
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 50px; /* 제목 아래 여백 */
+}
+
+/* 사진과 텍스트를 묶는 Flex 컨테이너 */
+.bio-flex-container {
+    display: flex; /* 자식 요소(사진, 텍스트)를 가로로 배치 */
+    align-items: center; /* 수직 가운데 정렬 */
+    gap: 40px; /* 사진과 텍스트 사이 간격 */
+    flex-wrap: wrap; /* 화면 좁아지면 세로로 쌓이도록 */
+    justify-content: center; /* 세로로 쌓일 때 가운데 정렬 */
+}
+
+/* 사진 영역 */
+.bio-photo {
+    flex: 0 0 200px; /* 사진 영역 고정 너비 (조절 가능) */
+    text-align: center; /* 내부 이미지 가운데 정렬 */
+}
+
+/* 프로필 사진 (원형) */
+.bio-photo img {
+    width: 180px; /* 사진 크기 (위 flex-basis보다 작게) */
+    height: 180px;
+    border-radius: 50%; /* 원 모양 */
+    object-fit: cover; /* 이미지 비율 유지하며 채우기 */
+    border: 5px solid #fff; /* 흰색 테두리 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* 그림자 효과 */
+}
+
+/* 텍스트 설명 영역 */
+.bio-text {
+    flex: 1; /* 남는 공간을 모두 차지 */
+    min-width: 300px; /* 텍스트 영역 최소 너비 (줄바꿈 조절) */
+}
+
+/* 텍스트 단락 스타일 */
+.bio-text p {
+    font-size: 1.05em; /* 텍스트 크기 */
+    line-height: 1.8; /* 줄 간격 */
+    color: #444;
+    margin-bottom: 1.5em; /* 단락 간격 */
+}
+.bio-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* ----- Sung2 멤버 소개 섹션 특별 스타일 ----- */
+
+/* Sung2 소개 섹션 배경색 지정 */
+.member-bio.sung2-bio { /* 두 클래스를 모두 가진 요소 선택 */
+    background-color: #800020; /* ★★★ 버건디색 Hex 코드 ★★★ */
+    /* 다른 버건디 계열 색상 코드: #8D021F, #900C3F 등 */
+}
+
+/* ★★★ 버건디 배경 위 텍스트 색상 변경 (가독성 확보) ★★★ */
+.member-bio.sung2-bio h2 {
+    color: #fff; /* 제목 색상을 흰색으로 */
+}
+
+.member-bio.sung2-bio .bio-text p {
+    color: #f0f0f0; /* 본문 색상을 밝은 회색으로 (흰색 #fff도 가능) */
+}
+
+/* (선택 사항) 프로필 사진 테두리 색상 변경 */
+.member-bio.sung2-bio .bio-photo img {
+     border-color: #f0f0f0; /* 밝은 텍스트 색상과 유사하게 */
+}
+
+/* ----- Sung3 멤버 소개 섹션 특별 스타일 ----- */
+
+/* Sung3 소개 섹션 배경색 지정 */
+.member-bio.sung3-bio { /* member-bio와 sung3-bio 클래스를 모두 가진 요소 */
+    background-color: #FFB6C1; /* ★★★ 연분홍 (LightPink) ★★★ */
+    /* 다른 연분홍 계열 색상 코드 예시: */
+    /* background-color: #FFC0CB; */ /* Pink */
+    /* background-color: #FFE4E1; */ /* MistyRose */
+    /* background-color: #FFF0F5; */ /* LavenderBlush */
+}
+
+/* (텍스트 색상 확인) 연분홍은 밝은 배경이므로 기본 어두운 텍스트 색상이
+   대부분 잘 보일 것입니다. 만약 잘 안보인다면 아래 주석을 해제하고
+   텍스트 색상을 더 진하게 조정할 수 있습니다. */
+/*
+.member-bio.sung3-bio h2 {
+    color: #222; // 더 진한 회색/검정
+}
+.member-bio.sung3-bio .bio-text p {
+    color: #444; // 더 진한 회색
+}
+*/
+
+/* ----- Kim1 멤버 소개 섹션 특별 스타일 ----- */
+
+/* Kim1 소개 섹션 배경색 지정 */
+.member-bio.kim1-bio { /* member-bio와 kim1-bio 클래스를 모두 가진 요소 */
+    background-color: #F5F5DC; /* ★★★ 베이지색 (Beige) Hex 코드 ★★★ */
+    /* 다른 베이지 계열 색상 코드 예시: */
+    /* background-color: beige; */ /* CSS 키워드 */
+    /* background-color: #FAF0E6; */ /* Linen */
+    /* background-color: #FFF8DC; */ /* Cornsilk */
+}
+
+/* (텍스트/테두리 색상 확인) 베이지는 매우 밝은 색상이므로,
+   기존의 어두운 텍스트 색상은 잘 보일 가능성이 높습니다.
+   프로필 사진의 흰색 테두리도 대부분 괜찮습니다.
+   만약 수정이 필요하다면 아래 주석을 해제하고 조정하세요. */
+/*
+.member-bio.kim1-bio h2 { color: #333; }
+.member-bio.kim1-bio .bio-text p { color: #444; }
+.member-bio.kim1-bio .bio-photo img { border-color: #ddd; }
+*/
+
+
+/* ----- Kim2 멤버 소개 섹션 특별 스타일 ----- */
+
+/* Kim2 소개 섹션 배경색 지정 */
+.member-bio.kim2-bio { /* member-bio와 kim2-bio 클래스를 모두 가진 요소 */
+    background-color: #6495ED; /* ★★★ 파란색 (CornflowerBlue) Hex 코드 ★★★ */
+    /* 다른 파란색 계열 색상 코드 예시: */
+    /* background-color: #4682B4; */ /* SteelBlue */
+    /* background-color: #1E90FF; */ /* DodgerBlue */
+    /* background-color: #87CEEB; */ /* SkyBlue */
+    /* background-color: #B0C4DE; */ /* LightSteelBlue */
+}
+
+/* ★★★ 파란 배경 위 텍스트 색상 변경 (가독성 확보) ★★★ */
+/* 선택한 파란색이 중간톤 이상으로 어둡다면 밝은 색 텍스트가 좋습니다 */
+.member-bio.kim2-bio h2 {
+    color: #fff; /* 제목 색상을 흰색으로 */
+}
+
+.member-bio.kim2-bio .bio-text p {
+    color: #f0f0f0; /* 본문 색상을 밝은 회색으로 (흰색 #fff도 가능) */
+}
+
+/* 프로필 사진 흰색 테두리는 파란 배경과 대비가 잘 될 것입니다. */
+/* 필요하다면 아래 주석 해제 후 테두리 색상 조정 */
+/*
+.member-bio.kim2-bio .bio-photo img {
+     border-color: #fff; // 흰색 테두리 유지 또는 변경
+}
+*/
+
+/* ----- Kim3 멤버 소개 섹션 특별 스타일 ----- */
+
+/* Kim3 소개 섹션 배경색 지정 */
+.member-bio.kim3-bio { /* member-bio와 kim3-bio 클래스를 모두 가진 요소 */
+    background-color: #3CB371; /* ★★★ 녹색 (MediumSeaGreen) Hex 코드 ★★★ */
+    /* 다른 녹색 계열 색상 코드 예시: */
+    /* background-color: #2E8B57; */ /* SeaGreen */
+    /* background-color: #8FBC8F; */ /* DarkSeaGreen */
+    /* background-color: #90EE90; */ /* LightGreen (밝음) */
+    /* background-color: #9ACD32; */ /* YellowGreen */
+}
+
+/* ★★★ 녹색 배경 위 텍스트 색상 변경 (가독성 확보) ★★★ */
+/* 선택한 녹색이 중간톤 이상으로 어둡다면 밝은 색 텍스트가 좋습니다 */
+.member-bio.kim3-bio h2 {
+    color: #fff; /* 제목 색상을 흰색으로 */
+}
+
+.member-bio.kim3-bio .bio-text p {
+    color: #f0f0f0; /* 본문 색상을 밝은 회색 또는 흰색으로 */
+    /* color: #fff; */
+}
+
+/* 프로필 사진 흰색 테두리는 대부분의 녹색 배경과 대비가 잘 될 것입니다. */
+/* 필요하다면 아래 주석 해제 후 테두리 색상 조정 */
+/*
+.member-bio.kim3-bio .bio-photo img {
+     border-color: #fff; // 흰색 테두리 유지 또는 변경
+}
+*/
+
+/* ----- 반응형: 멤버 소개 섹션 ----- */
+@media (max-width: 768px) {
+    .bio-flex-container {
+        flex-direction: column; /* 세로로 쌓기 */
+        gap: 30px;
+        text-align: center; /* 모바일에서 텍스트 가운데 정렬 */
+    }
+    .bio-photo {
+         flex-basis: auto; /* 고정 너비 해제 */
+         margin-bottom: 10px; /* 사진 아래 여백 */
+    }
+    .bio-photo img { /* 모바일에서 사진 약간 작게 */
+        width: 150px;
+        height: 150px;
+    }
+    .bio-text {
+        text-align: center; /* 모바일에서 텍스트 가운데 정렬 */
+    }
+    .member-bio h2 {
+         font-size: 1.8em;
+         margin-bottom: 30px;
+    }
+}
+
+/* ------- 세로 쇼츠 컨테이너 --------- */
+.shorts-container {
+    position: relative;
+    width: 100%; /* 슬라이드 너비에 맞춤 */
+    /* max-width: 320px; */ /* 슬라이더에서는 제거하거나 조절 필요 */
+    padding-bottom: 177.78%; /* 9:16 ratio */
+    height: 0;
+    overflow: hidden;
+    background: #f0f0f0;
+    margin: 0 auto;
+    border: 1px solid #eee;
+}
+.shorts-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+}
+
+
+/* style.css 에 추가 */
+.shorts-swiper {
+  /* width: 100%;*/ /* 또는 원하는 너비/최대 너비 설정 */
+  /* height: 600px; */ /* 필요하다면 높이 지정 */
+  max-width: 1200px; /* ★★★ 슬라이더의 최대 너비 설정 (원하는 값으로 조절) ★★★ */
+  margin-left: auto;  /* ★★★ 가운데 정렬 ★★★ */
+  margin-right: auto; /* ★★★ 가운데 정렬 ★★★ */
+  padding-bottom: 40px; /* 페이지네이션/버튼 공간 확보 */
+  margin-bottom: 30px;
+}
+
+.shorts-swiper .swiper-slide {
+  box-sizing: border-box;
+  padding: 0 5px; /* 슬라이드 좌우 약간의 여백 (선택 사항) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background: #eee; */ /* 슬라이드 배경색 (선택 사항) */
+}
+
+.shorts-swiper .short-caption { /* 쇼츠 제목 스타일 (선택 사항) */
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* (선택 사항) Swiper 넘김 버튼/페이지네이션 색상 등 커스터마이징 */
+.shorts-swiper .swiper-button-next,
+.shorts-swiper .swiper-button-prev {
+    color: #fff; /* 버튼 색상 */
+}
+.shorts-swiper .swiper-pagination-bullet-active {
+    background: #555; /* 활성 점 색상 */
+}
+
+
+
+/* ----- 기본 스타일 초기화 및 설정 ----- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* 링크 클릭 시 부드럽게 스크롤 */
+}
+
+/* ----- 기본 스타일 재정의 (필요 시) ----- */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.7;
+    background-color: #fff;
+    color: #333;
+    /* body의 기본 padding 제거 또는 수정 */
+    padding: 0; /* Hero 섹션이 화면 전체를 차지하도록 */
+    margin: 0;
+}
+
+
+/* ----- 연도별 갤러리 섹션 제목 등 스타일 ----- */
+/* 이 규칙이 오류 없이 존재하는지 확인! */
+.year-gallery {
+    padding: 80px 20px;
+}
+.year-gallery h2 {
+    text-align: center;
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+/* ----- 기본 갤러리 아이템 스타일 ----- */
+/* 이 규칙이 오류 없이 존재하는지 확인! */
+.gallery-item {
+    border: 1px solid #eee;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.3s ease;
+     position: relative; /* 호버 효과 등을 위해 필요할 수 있음 */
+}
+ .gallery-item:hover {
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+ }
+
+/* ----- 기본 사진 그리드 스타일 (모든 갤러리 공통 적용) ----- */
+/* 이 규칙이 오류 없이 존재하는지 확인! */
+.photo-grid {
+    display: grid;
+    /* ▼▼▼ 기본적인 반응형 컬럼 설정 ▼▼▼ */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
+    gap: 15px; /* 갭 조절 가능 */
+    max-width: 1000px; /* 최대 너비 조절 가능 */
+    margin: 0 auto;
+}
+
+/* ----- ★★★ 2021 갤러리 (5열, 정사각형) 특정 스타일 ★★★ ----- */
+
+/* Grid layout (이 규칙은 이미 있어야 합니다) */
+.photo-grid.five-col-square-grid {
+    grid-template-columns: repeat(5, 1fr); /* 5열 만들기 */
+    gap: 10px; /* 갭 조절 가능 */
+    /* max-width, margin 등은 .photo-grid 에서 상속받거나 여기서 재정의 */
+}
+
+.five-col-square-grid .gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;      /* ★★★ 부모(gallery-item)의 높이(정사각형 높이)를 100% 채움 ★★★ */
+    object-fit: cover; /* ★★★ 비율 유지하며 영역 채우기 (이미지 일부 잘릴 수 있음) ★★★ */
+}
+
+
+/* ----- 반응형 처리 (이 규칙들은 이미 있어야 합니다) ----- */
+@media (max-width: 992px) {
+    .photo-grid.five-col-square-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .photo-grid.five-col-square-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    /* ... 모바일 섹션/제목 스타일 ... */
+}
+
+
+
+
+/* ----- 갤러리 아이템 안의 이미지 기본 스타일 ----- */
+
+/* ----- 상단 메뉴 (헤더) 스타일 - index.html ----- */
+.site-header {
+    position: fixed; /* 화면 상단에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 헤더 배경은 화면 전체 너비 */
+    background-color: rgba(255, 255, 255, 0.95); /* 배경색 유지 */
+    /* ▼▼▼ 기존 padding 수정: 좌우 패딩은 내부 컨테이너가 담당하도록 제거 ▼▼▼ */
+    /* padding: 15px 28%; */ /* 또는 15px 100px 등 */
+    padding: 15px 0; /* 상하 패딩만 유지 (또는 0으로 설정) */
+    /* ▲▲▲ padding 수정 ▲▲▲ */
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* display: flex 등은 내부 컨테이너로 이동 */
+}
+
+/* 헤더 내부 컨테이너 (콘텐츠 정렬 및 너비 제한) */
+.site-header .container.header-container {
+    /* ★★★ 다른 섹션의 .container 와 동일한 max-width, padding 값 사용 ★★★ */
+    max-width: 1100px; /* 예시: 다른 컨테이너가 1100px이라면 동일하게 */
+    margin: 0 auto; /* 컨테이너 가운데 정렬 */
+    padding: 0 20px; /* 컨테이너 내부 좌우 여백 (다른 컨테이너와 동일하게) */
+    /* --- Flexbox 로 내부 요소(로고, 네비) 배치 --- */
+    display: flex;
+    justify-content: space-between; /* 로고와 네비 그룹을 양쪽 끝으로 */
+    align-items: center; /* 수직 가운데 정렬 */
+    height: 100%; /* 필요 시 헤더 높이에 맞게 조절 */
+}
+
+    .site-header .logo {
+        font-weight: 500; /* Medium */
+        font-size: 1.2em;
+        color: #111;
+    }
+
+    .site-header nav a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: #333;
+        font-size: 0.95em;
+    }
+
+        .site-header nav a:hover {
+            color: #007bff; /* 호버 시 색상 변경 (예시) */
+        }
+
+
+/* ----- ★★★ 고정 헤더 아래 콘텐츠 위한 여백 추가 (중요) ★★★ ----- */
+/* 헤더가 fixed 되어 내용을 가리므로, body 바로 아래 첫번째 섹션에 상단 여백 추가 */
+/* 현재 index.html의 첫번째 섹션은 intro-section 이므로 */
+body > .intro-section {
+    /* 헤더의 실제 높이 + 원하는 추가 간격 만큼 padding-top 또는 margin-top 부여 */
+    /* 헤더 높이는 padding(15px*2=30px) + 내용 높이(폰트크기 등 고려) 로 계산 */
+    padding-top: 100px; /* ★★★ 실제 헤더 높이를 보고 정확한 값으로 조절하세요 ★★★ */
+    /* 기존 intro-section의 padding-top 값은 이 값으로 덮어쓰거나 합쳐서 계산 */
+}
+
+/* ----- 헤더 네비게이션 정렬 (기존 메뉴와 아이콘 정렬) ----- */
+.site-header nav {
+    display: flex; /* 내부 요소(텍스트 링크, 소셜 아이콘 div)를 가로로 배치 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+/* ----- 소셜 아이콘 영역 스타일 ----- */
+.social-icons {
+    margin-left: 25px; /* Gallery 링크와 아이콘 영역 사이 간격 */
+    display: flex; /* 아이콘들을 가로로 배치 */
+    align-items: center; /* 아이콘들 수직 가운데 정렬 */
+}
+
+/* ----- 개별 소셜 아이콘 링크 스타일 ----- */
+.social-icons a {
+    color: #333; /* 아이콘 색상 (기본 텍스트 색상과 유사하게) */
+    text-decoration: none; /* 밑줄 제거 */
+    font-size: 1.4em; /* 아이콘 크기 조절 (원하는 크기로) */
+    margin-left: 15px; /* 아이콘 사이의 간격 */
+    transition: color 0.3s ease, transform 0.3s ease; /* 부드러운 효과 */
+}
+
+.social-icons a:first-child {
+    margin-left: 0; /* 첫 번째 아이콘에는 왼쪽 간격 불필요 */
+}
+
+/* ----- 아이콘 호버 효과 (마우스 올렸을 때) ----- */
+.social-icons a:hover {
+    color: #007bff; /* 호버 시 색상 변경 (원하는 색으로) */
+    transform: scale(1.1); /* 약간 확대되는 효과 */
+}
+
+/* (선택 사항) 각 브랜드 색상으로 호버 효과 주기 */
+.social-icons a:hover i.fa-instagram {
+    color: #E4405F; /* 인스타그램 색상 */
+}
+
+.social-icons a:hover i.fa-youtube {
+    color: #FF0000; /* 유튜브 색상 */
+}
+
+/* ----- 소개 섹션 스타일 ----- */
+.intro-section {
+    padding: 80px 20px; /* 섹션의 상하 여백 넉넉하게 */
+    background-color: #fff; /* 배경색 (흰색 또는 #f9f9f9 등 연한 회색) */
+}
+
+    /* 소개 섹션 내부 컨테이너 스타일 (HTML에서 container 사용 시) */
+    .intro-section .intro-container {
+        max-width: 800px; /* 텍스트 내용 최대 너비 설정 (가독성) */
+        margin: 0 auto; /* 컨테이너 가운데 정렬 */
+        text-align: left; /* 컨테이너 내 텍스트 왼쪽 정렬 (선호에 따라 center) */
+    }
+
+    .intro-section h2 {
+        text-align: left; /* 제목은 좌측 정렬 */
+        font-size: 2.4em;
+        font-weight: 700; /* Medium */
+        color: #333;
+        margin-bottom: 40px; /* 제목 아래 여백 */
+    }
+
+    .intro-section p {
+        font-size: 1.2em; /* 기본 폰트보다 약간 크게 */
+        line-height: 1.4; /* 줄 간격 더 넓게 설정 */
+        color: #555; /* 본문 텍스트 색상 */
+        margin-bottom: 1.6em; /* 단락 사이 여백 */
+    }
+
+        .intro-section p:last-child {
+            margin-bottom: 0; /* 마지막 단락 아래 여백 제거 */
+        }
+
+/* ----- 메인(갤러리) 섹션 상단 여백 조절 (필요 시) ----- */
+main#gallery {
+    padding-top: 80px; /* intro-section과의 간격을 위해 상단 패딩 조절 */
+    /* 기존 padding 속성들 유지 */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 60px;
+}
+
+    main#gallery h2 { /* 갤러리 섹션 제목 스타일 */
+        text-align: center;
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 50px;
+    }
+
+/* ... 나머지 기존 CSS 스타일 ... */
+
+/* ----- Hero 섹션 스타일 ----- */
+.hero {
+    position: relative; /* 내부 절대 위치 요소(overlay, content)의 기준점 */
+    height: 100vh; /* 화면 전체 높이만큼 차지 */
+    background-image: url('images/background.jpg'); /* 여기에 배경 이미지 경로 지정! */
+    background-size: cover; /* 이미지가 섹션을 완전히 덮도록 */
+    background-position: center center; /* 이미지를 중앙에 위치 */
+    /* --- 이 줄을 추가하여 배경을 고정시킵니다 --- */
+    background-attachment: fixed;
+    /* --- 추가 완료 --- */
+    display: flex; /* Flexbox 사용하여 내부 요소 정렬 */
+    justify-content: center; /* 수직 중앙 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    text-align: center;
+    color: #fff; /* 내부 텍스트 기본 색상 (배경이 어두울 경우 흰색) */
+    /* 헤더 높이만큼 상단 패딩을 주어 내용이 겹치지 않게 (선택 사항) */
+    /* padding-top: 80px; */ /* 헤더 높이에 맞게 조절 */
+}
+
+/* ----- Hero 섹션 오버레이 (선택 사항) ----- */
+.hero-overlay {
+    position: absolute; /* Hero 섹션 기준으로 위치 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* 검은색 40% 투명도 오버레이 (색상/투명도 조절) */
+    z-index: 1; /* 내용(hero-content)보다 뒤에 위치 */
+}
+
+/* ----- Hero 섹션 콘텐츠 스타일 ----- */
+.hero-content {
+    position: relative; /* 오버레이 위에 오도록 */
+    z-index: 2;
+    /* 아래는 텍스트 패널 효과 (선택 사항) */
+    /* background-color: rgba(0, 0, 0, 0.3); */ /* 텍스트 주변 반투명 검은 배경 */
+    /* padding: 30px 50px; */
+    /* border-radius: 8px; */
+    max-width: 80%; /* 내용 최대 너비 제한 */
+}
+
+    .hero-content h1 {
+        font-size: 3em; /* 원하는 크기로 조절 */
+        font-weight: 500; /* Medium */
+        margin-bottom: 15px;
+        line-height: 1.3;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* 텍스트 그림자로 가독성 확보 */
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+        font-weight: 300; /* Light */
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+/* ----- 메인 콘텐츠 영역 스타일 ----- */
+main {
+    padding: 60px 20px; /* 위아래, 좌우 여백 */
+}
+
+    main h2 { /* 갤러리 제목 등 */
+        text-align: center;
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 40px;
+    }
+
+/* ----- 기존 .gallery-grid, .gallery-item 등의 스타일은 유지 ----- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 이전 설정값 또는 원하는 값 */
+    gap: 20px; /* 이전 설정값 또는 원하는 값 */
+    max-width: 1280px; /* 갤러리 최대 너비 (선택 사항) */
+    margin: 0 auto; /* 갤러리 가운데 정렬 (선택 사항) */
+}
+
+/* ... 기타 기존 스타일 ... */
+
+.gallery-item {
+    position: relative; /* 내부 절대 위치 요소(.img-hover)의 기준점 */
+    display: block;
+    overflow: hidden; /* 내부 이미지가 넘치지 않도록 */
+    border: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.3s ease; /* 그림자 효과 transition 유지 */
+    /* aspect-ratio: 1 / 1; */ /* 정사각형 원하면 주석 해제 */
+}
+
+.gallery-item:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-item .img-original {
+    display: block;
+    width: 100%;
+    height: auto; /* 부모 높이(aspect-ratio 설정 시)를 따르거나 auto */
+    object-fit: cover; /* aspect-ratio 사용 시 */
+    /* transition: opacity 0.3s ease-in-out; */ /* 원본 이미지 사라지는 효과 원하면 추가 */
+}
+
+.gallery-item .img-hover {
+    position: absolute; /* 원본 이미지 위에 겹치도록 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 부모 요소(.gallery-item) 너비에 맞춤 */
+    height: 100%; /* 부모 요소(.gallery-item) 높이에 맞춤 */
+    object-fit: cover; /* 이미지가 비율 유지하며 영역 채우도록 */
+    opacity: 0; /* ★ 평소에는 투명하게 숨김 ★ */
+    transition: opacity 0.3s ease-in-out; /* 부드러운 전환 효과 */
+    z-index: 2; /* 원본 이미지보다 위에 오도록 */
+}
+
+.gallery-item:hover .img-hover {
+    opacity: 1; /* ★ 마우스 올리면 불투명하게 표시 ★ */
+
+
+/* ----- 사진 그리드 공통 스타일 (기존 .gallery-grid과 공유 가능) ----- */
+/* .photo-grid { */
+   /* display: grid; */
+ /*    grid-template-columns: repeat(150px, 1fr); */
+/*    gap: 15px; */ /* 사진 사이 간격 (원하는 값으로 조절) */
+  /*  max-width: 300px; */ /* 그리드 최대 너비 (선택 사항) */
+   /* margin: 0 auto; */ /* 그리드 가운데 정렬 (선택 사항) */
+/* } */
+
+
+
+/* ----- 멤버 페이지 ----- */
+.member-page-header h1 { /* 멤버 페이지 제목 스타일 */
+    margin-bottom: 10px;
+    font-size: 2.2em;
+    font-weight: 500;
+    text-transform: none; /* 대문자 변환 안 함 */
+    letter-spacing: normal; /* 기본 글자 간격 */
+    text-align: center; /* 가운데 정렬 또는 left */
+    color: #111;
+}
+
+.back-link { /* '갤러리로 돌아가기' 링크 컨테이너 */
+    text-align: center; /* 가운데 정렬 */
+    margin-bottom: 40px;
+}
+
+    .back-link a {
+        text-decoration: none;
+        color: #555;
+        font-size: 0.9em;
+    }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+.content-section {
+    margin-bottom: 60px; /* 섹션 간 여백 늘리기 */
+    max-width: 760px; /* 본문 내용 최대 너비 제한 (가독성) */
+    margin-left: auto; /* 섹션 가운데 정렬 */
+    margin-right: auto;
+}
+
+    .content-section h2 { /* 섹션 소제목 */
+        margin-bottom: 25px;
+        /* border-bottom: 1px solid #eee; */ /* 밑줄 제거 또는 변경 */
+        /* padding-bottom: 10px; */
+        font-weight: 500; /* Medium */
+        font-size: 1.3em;
+        color: #111;
+        text-align: center; /* 소제목 가운데 정렬 (선택 사항) */
+    }
+
+    .content-section p { /* 소개 글 단락 */
+        font-size: 1em;
+        font-weight: 300; /* 약간 얇게 (Light) */
+        color: #444;
+        line-height: 1.8; /* 줄 간격 더 넓게 */
+    }
+
+/* ----- 반응형 유튜브 영상 (기존 스타일 유지, 약간의 테두리 추가) ----- */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #f9f9f9; /* 약간 밝은 배경 */
+    margin-bottom: 20px;
+    border: 1px solid #eee; /* 옅은 테두리 */
+}
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+
+/* ----- 푸터 ----- */
+footer {
+    text-align: center;
+    margin-top: 80px; /* 푸터 위 여백 늘리기 */
+    padding-top: 40px;
+    border-top: 1px solid #eee;
+
+}

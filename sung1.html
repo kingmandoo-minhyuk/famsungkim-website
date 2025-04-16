@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sung1 - Father</title>
+    <link rel="stylesheet" href="style.css"> <!-- 메인 페이지와 동일한 CSS 사용 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+</head>
+<body>
+    <header class="member-page-header"> <div class="container header-container"> <div class="member-info"> <h1>Sung 1</h1>
+                <p class="back-link"><a href="index.html">back to main</a></p>
+            </div>
+            <div class="member-social"> <a href="https://www.instagram.com/famsungkim" target="_blank" rel="noopener noreferrer" title="Sung1 Instagram" aria-label="Sung1 Instagram profile">
+                    <i class="fa-brands fa-instagram"></i> </a>
+                </div>
+        </div>
+    </header>
+
+    <main>
+<div class="content-section">
+    <h2>Short Moments</h2> <div class="swiper shorts-swiper"> <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="video-container shorts-container">
+                    <iframe width="315" height="560" src=" https://www.youtube.com/embed/gXuxOjiN-Ss " ...></iframe>
+                </div>
+                <p class="short-caption">쇼츠 1 제목 (선택 사항)</p>
+            </div>
+            <div class="swiper-slide">
+                <div class="video-container shorts-container">
+                    <iframe width="315" height="560" src=" https://www.youtube.com/embed/yODA5a0JHDc " ...></iframe>
+                </div>
+                <p class="short-caption">쇼츠 2 제목 (선택 사항)</p>
+            </div>
+            <div class="swiper-slide">
+                <div class="video-container shorts-container">
+                    <iframe width="315" height="560" src=" https://www.youtube.com/embed/qHQjtYuEWtk " ...></iframe>
+                </div>
+                <p class="short-caption">쇼츠 3 제목 (선택 사항)</p>
+            </div>
+            <div class="swiper-slide">
+                <div class="video-container shorts-container">
+                    <iframe width="315" height="560" src=" https://www.youtube.com/embed/9Mc1g7ScDgg " ...></iframe>
+                </div>
+                <p class="short-caption">쇼츠 4 제목 (선택 사항)</p>
+            </div>
+            <div class="swiper-slide">
+                <div class="video-container shorts-container">
+                    <iframe width="315" height="560" src=" https://www.youtube.com/embed/4TDQzMh5wMc " ...></iframe>
+                </div>
+                <p class="short-caption">쇼츠 5 제목 (선택 사항)</p>
+            </div>
+            </div>
+        <div class="swiper-pagination"></div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</div>
+
+        <div class="content-section">
+            <h2>Introducing</h2>
+<section class="content-section member-bio"> <div class="container bio-container"> 
+                <h2>JIN YOUNG (a.k.a SUNG1)</h2> <div class="bio-flex-container"> <div class="bio-photo">
+                <img src="images/profile_sung1.jpg" alt="성1 아빠 프로필 사진">
+            </div>
+            <div class="bio-text" data-aos="fade-up">
+                <p>
+                    Our SUNG1 isn't usually talkative, but you can feel warmth in his every action. 
+While expressing himself might not be his strong suit, he possesses deep affection and is like a steadfast pillar, 
+silently supporting our family. If you've watched the Netflix series 'When Life Gives You Tangerines', 
+you could say SUNG1 is the real-life embodiment of the main character, Yang Gwan-sik.
+                </p>
+                <p>
+                    It seems like anything SUNG1 touches gets fixed effortlessly; 
+we're very familiar with the sight of him diligently fixing or making things around the house. 
+In fact, he's also a highly skilled and versatile man, holding an impressive 11 national technical certifications. 
+With a warm heart hidden beneath his quiet exterior and his outstanding practical skills, 
+he steadfastly watches over us – SUNG1 is truly wonderful.
+                    </p>
+            </div>
+        </div> </div> </section>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Copyright 등 푸터 내용 추가 -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+<script>
+    const swiper = new Swiper('.shorts-swiper', { // HTML에서 지정한 클래스 이름 사용
+      // 한 번에 보여줄 슬라이드 개수
+      slidesPerView: 1, // 모바일에서는 1개부터 시작
+      spaceBetween: 15, // 슬라이드 사이 간격
+
+      // 페이지네이션 (점)
+      pagination: {
+        el: '.swiper-pagination', // HTML에 있는 페이지네이션 클래스
+        clickable: true, // 점 클릭해서 이동 가능
+      },
+
+      // 네비게이션 버튼 (화살표)
+      navigation: {
+        nextEl: '.swiper-button-next', // HTML에 있는 다음 버튼 클래스
+        prevEl: '.swiper-button-prev', // HTML에 있는 이전 버튼 클래스
+      },
+
+      // 반응형 설정 (화면 크기별로 옵션 변경)
+      breakpoints: {
+        // 화면 너비 640px 이상일 때
+        640: {
+          slidesPerView: 2, // 2개 보여주기
+          spaceBetween: 20
+        },
+        // 화면 너비 1024px 이상일 때
+        1024: {
+          slidesPerView: 3, // 3개 보여주기 (또는 원하는 개수)
+          spaceBetween: 30
+        }
+        // 필요하다면 더 많은 breakpoint 추가
+      }
+    });
+</script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init(); // AOS 라이브러리 실행
+    </script>
+</body>
+</html>
