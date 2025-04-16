@@ -1,6 +1,82 @@
 /* ----- Google Font Import (예: Noto Sans KR 또는 다른 깔끔한 산세리프 폰트) ----- */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
+/* ----- 기본 스타일 초기화 및 설정 ----- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ----- 모바일 화면 헤더 레이아웃 조정 ----- */
+
+@media (max-width: 768px) { /* 화면 너비 768px 이하일 때 적용 (필요시 값 조절) */
+
+    /* 헤더 컨테이너 좌우 여백은 유지하거나 약간 조절 */
+    .site-header .container.header-container {
+        padding-left: 15px;
+        padding-right: 15px;
+        /* 필요하다면 컨테이너 자체도 줄바꿈 허용 */
+        /* flex-wrap: wrap; */
+    }
+
+    /* ★★★ 네비게이션 요소들이 줄바꿈 하도록 설정 ★★★ */
+    .site-header nav {
+        flex-wrap: wrap; /* 공간 부족 시 다음 줄로 넘김 */
+        justify-content: flex-end; /* 요소들을 오른쪽으로 정렬 (선택 사항) */
+        gap: 5px 10px; /* 줄 간격 및 항목 간 최소 간격 (선택 사항) */
+        /* 로고와의 간격을 위해 약간의 왼쪽 마진 추가 */
+        margin-left: 15px;
+        flex-grow: 1; /* 로고를 제외한 나머지 공간 차지 */
+    }
+
+     /* 줄바꿈될 가능성이 높은 언어 선택 버튼 그룹 스타일 조정 */
+    .lang-switcher {
+        /* flex-basis: 100%; */ /* 아예 한 줄을 다 차지하게 할 수도 있음 */
+        width: 100%; /* 한 줄을 차지할 때 너비 100% */
+        margin-left: 0; /* 왼쪽 여백 초기화 (nav에서 gap 처리) */
+        margin-top: 8px; /* 윗 줄과의 간격 */
+        justify-content: flex-end; /* 버튼들을 오른쪽으로 정렬 */
+        display: flex; /* 내부 버튼 정렬 위해 다시 flex 설정 */
+        padding-top: 5px; /* 구분선 역할 */
+        border-top: 1px solid #eee; /* 구분선 추가 (선택 사항) */
+    }
+
+    /* 기존 모바일 간격 조정 유지 (필요시 값 재조절) */
+    .social-icons {
+        margin-left: 15px;
+    }
+    .social-icons a {
+        margin-left: 12px;
+    }
+    .site-header nav > a { /* Home, About, Photos */
+         margin-left: 15px;
+    }
+}
+
+/* 더 작은 화면 (예: 480px 이하)에서 추가 조정이 필요하면 여기에 별도 규칙 추가 */
+@media (max-width: 480px) {
+    .site-header nav > a {
+         margin-left: 10px;
+         font-size: 0.9em; /* 글씨 크기 줄이기 */
+    }
+     .social-icons {
+        margin-left: 10px;
+    }
+    .social-icons a {
+        margin-left: 10px;
+        font-size: 1.3em; /* 아이콘 크기 줄이기 */
+    }
+    .lang-switcher {
+        margin-top: 5px;
+    }
+    .lang-flag { /* 국기 버튼 크기 약간 줄이기 */
+        width: 28px;
+        height: 18px;
+        margin-left: 5px;
+    }
+}
+
 /* ----- 언어 선택 버튼 스타일 ----- */
 .lang-switcher {
   margin-left: 20px; /* 다른 메뉴와의 간격 */
@@ -355,6 +431,8 @@
 
 /* ----- Kim2 멤버 소개 섹션 특별 스타일 ----- */
 
+
+
 /* Kim2 소개 섹션 배경색 지정 */
 .member-bio.kim2-bio { /* member-bio와 kim2-bio 클래스를 모두 가진 요소 */
     background-color: #6495ED; /* ★★★ 파란색 (CornflowerBlue) Hex 코드 ★★★ */
@@ -493,12 +571,6 @@
 
 
 
-/* ----- 기본 스타일 초기화 및 설정 ----- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
 html {
     scroll-behavior: smooth; /* 링크 클릭 시 부드럽게 스크롤 */
@@ -565,7 +637,15 @@ body {
     /* max-width, margin 등은 .photo-grid 에서 상속받거나 여기서 재정의 */
 }
 
+/* 정사각형 모양 만들기 (2021 등 갤러리 아이템) */
+.five-col-square-grid .gallery-item { /* ★★★ 이 규칙 추가! ★★★ */
+    aspect-ratio: 1 / 1; /* 가로세로 비율 1:1 */
+    /* 다른 필요한 스타일(overflow, border 등)은
+       기본 .gallery-item 규칙에서 상속받으므로 여기서 정의할 필요 없음 */
+}
+
 .five-col-square-grid .gallery-item img {
+    aspect-ratio: 1 / 1; /* 가로세로 비율 1:1 (정사각형) */
     display: block;
     width: 100%;
     height: 100%;      /* ★★★ 부모(gallery-item)의 높이(정사각형 높이)를 100% 채움 ★★★ */
@@ -838,7 +918,7 @@ main {
 .gallery-item .img-original {
     display: block;
     width: 100%;
-    height: auto; /* 부모 높이(aspect-ratio 설정 시)를 따르거나 auto */
+    height: 100%; /* 부모 높이(aspect-ratio 설정 시)를 따르거나 auto */
     object-fit: cover; /* aspect-ratio 사용 시 */
     /* transition: opacity 0.3s ease-in-out; */ /* 원본 이미지 사라지는 효과 원하면 추가 */
 }
