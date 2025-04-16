@@ -459,5 +459,73 @@
             });
         }
     </script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        const lightbox = GLightbox({ loop: true, zoomable: false });
+        // Swiper 초기화 코드 (만약 index.html에도 슬라이더가 있다면)
+    </script>
+
+    <script>
+      // 페이지 HTML 요소들이 로드된 후 실행되도록 함
+      document.addEventListener('DOMContentLoaded', function() {
+        // 유튜브 플레이어가 표시될 div 요소 찾기
+        const playerPlaceholder = document.getElementById('latest-youtube-player');
+        // Netlify 함수의 상대 경로
+        const functionUrl = '/.netlify/functions/get-latest-video';
+
+        // 플레이스홀더 div가 페이지에 있는지 확인
+        if (playerPlaceholder) {
+          // Netlify 함수 호출 (fetch API 사용)
+          fetch(functionUrl)
+            .then(response => {
+              // 함수 응답이 성공적인지 확인 (HTTP 상태 코드 200-299)
+              if (!response.ok) {
+                // 함수에서 오류 응답(JSON 형태)을 보냈을 경우 그 메시지를 사용 시도
+                return response.json().catch(() => {
+                    // JSON 파싱 실패 시 (오류 응답이 JSON이 아닐 때) 기본 오류 생성
+                    throw new Error(`Function request failed. Status: ${response.status} ${response.statusText}`);
+                }).then(errorData => {
+                    // 함수가 보낸 오류 메시지 또는 기본 메시지 사용
+                     throw new Error(errorData.error || `Function returned status ${response.status}`);
+                });
+              }
+              // 성공 응답이면 JSON 데이터 파싱
+              return response.json();
+            })
+            .then(data => {
+              // JSON 데이터 안에 videoId가 있는지 확인
+              if (data && data.videoId) {
+                const videoId = data.videoId;
+                // iframe HTML 코드 생성 (유튜브 표준 Embed 형식)
+                const iframeHtml = `
+                  <iframe
+                    width="560" height="315" /* 이 값은 CSS에 의해 조절됨 */
+                    src="https://www.youtube.com/embed/VIDEO_ID...${videoId}"
+                    title="Latest YouTube Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                  </iframe>`;
+                // 플레이스홀더 div의 내용을 iframe 코드로 교체
+                playerPlaceholder.innerHTML = iframeHtml;
+              } else {
+                // videoId가 응답에 없을 경우 오류 처리
+                throw new Error('Video ID not found in the function response.');
+              }
+            })
+            .catch(error => {
+              // fetch 또는 그 이후 과정에서 오류 발생 시 처리
+              console.error('Error fetching or displaying latest video:', error);
+              // 사용자에게 오류 메시지 표시
+              playerPlaceholder.innerHTML = `<p>최신 영상을 불러오는 중 오류가 발생했습니다: ${error.message}</p>`;
+            });
+        } else {
+            console.warn('Placeholder element #latest-youtube-player not found.');
+        }
+      });
+    </script>
     </body>
 </html>
