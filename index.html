@@ -414,14 +414,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-    <script>
-        const lightbox = GLightbox({
-            // 여기에 필요한 옵션들을 추가할 수 있습니다.
-            loop: true, // 갤러리 마지막 사진에서 다음 버튼 누르면 처음으로 돌아가기
-            zoomable: false // ★★★ 이미지 확대 기능 비활성화 ★★★
-            // 다른 옵션들은 GLightbox 문서를 참고하세요. (예: 터치 지원, 효과 등)
-        });
-    </script>
+
 
 <script>
         const loadMoreBtn = document.getElementById('load-more-btn');
@@ -459,6 +452,7 @@
             });
         }
     </script>
+
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -502,7 +496,7 @@
                 const iframeHtml = `
                   <iframe
                     width="560" height="315" /* 이 값은 CSS에 의해 조절됨 */
-                    src="https://www.youtube.com/embed/VIDEO_ID...${videoId}"
+                    src="https://www.youtube.com/embed/${videoId}"
                     title="Latest YouTube Video"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
