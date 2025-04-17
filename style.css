@@ -595,7 +595,7 @@ body {
 /* ----- 연도별 갤러리 섹션 제목 등 스타일 ----- */
 /* 이 규칙이 오류 없이 존재하는지 확인! */
 .year-gallery {
-    padding: 80px 20px;
+    padding: 140px 20px;
 }
 .year-gallery h2 {
     text-align: center;
@@ -827,7 +827,7 @@ body > .intro-section {
 
 /* ----- 메인(갤러리) 섹션 상단 여백 조절 (필요 시) ----- */
 main#gallery {
-    padding-top: 80px; /* intro-section과의 간격을 위해 상단 패딩 조절 */
+    padding-top: 120px; /* intro-section과의 간격을 위해 상단 패딩 조절 */
     /* 기존 padding 속성들 유지 */
     padding-left: 20px;
     padding-right: 20px;
