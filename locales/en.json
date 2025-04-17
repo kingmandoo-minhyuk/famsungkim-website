@@ -10,16 +10,32 @@
   "gallery_2025_title": "2025",
   "load_more_btn": "Load more",
   "all_shown_btn": "No More Items",
-  "member_sung1_name": "Sung 1 (Father)",
+  "back_to_main_link": "back to main",
+  "member_sung1_name": "Sung 1 - Father",
+  "member_sung2_name": "Sung 2 - Elder Daughter",
+  "member_sung3_name": "Sung 3 - Younger Daughter",
+  "member_kim1_name": "Kim 1 - Mother",
+  "member_kim2_name": "Kim 2 - Son-in-law",
+  "member_kim3_name": "Kim 3 - Son-in-law",
+
   "member_sung1_p1": "Our SUNG1 isn't usually talkative, but you can feel warmth in his every action. While expressing himself might not be his strong suit, he possesses deep affection and is like a steadfast pillar, silently supporting our family. If you've watched the Netflix series 'When Life Gives You Tangerines', you could say SUNG1 is the real-life embodiment of the main character, Yang Gwan-sik.",
   "member_sung1_p2": "It seems like anything SUNG1 touches gets fixed effortlessly; we're very familiar with the sight of him diligently fixing or making things around the house. In fact, he's also a highly skilled and versatile man, holding an impressive 11 national technical certifications. With a warm heart hidden beneath his quiet exterior and his outstanding practical skills, he steadfastly watches over us – SUNG1 is truly wonderful.",
-  "back_to_main_link": "back to main",
-  "member_sung2_name": "Sung 2 (Eldest daughter)",
-  "member_sung2_p1": "",
-  "member_sung2_p2": "",
-  "member_sung3_name": "Sung 3 (Younger daughter)",
+
+  "member_sung2_p1": "Our older daughter, SUNG2, is calm, responsible, and possesses a very methodical and logical personality. She's so logical that her nicknames among the family are 'Robot' or 'AI'.",
+  "member_sung2_p2": "SUNG2's outstanding planning and execution skills are truly shining on our family's current world trip. She took the lead in handling all the planning and booking for this huge project. Behind this seemingly meticulous exterior lies an affectionate older sister who deeply cherishes and loves her younger sibling. Additionally, she is the dependable eldest daughter whom our parents rely on the most.",
+  "member_sung2_p3": "SUNG2 is a talented individual who majored in Architecture at Hanyang University, renowned as Korea's top school for the field. After graduating, she worked as a capable architect in Korea, but has now temporarily set her career aside to lead our entire family, making the wonderful challenge of a world trip a reality.",
+  "member_sung2_p4": "Contrary to her 'Robot' or 'AI' nicknames, SUNG2 possesses a rich artistic sensibility deep inside. She enjoys capturing beautiful scenery with her camera, revealing her side as a photographer with a delicate eye. Possessing meticulous planning skills, a warm heart, and artistic sensibility all rolled into one, this is SUNG2, the reliable leader of our family's journey."
+
   "member_sung3_p1": "",
   "member_sung3_p2": "",
-  "member_kim1_name": "Kim 1 (Mother)",
+  "member_sung3_p3":
+
   "member_kim1_p1": "",
   "member_kim1_p2": "",
+
+  "member_kim2_p1": "",
+  "member_kim2_p2": "",
+
+  "member_kim3_p1": "",
+  "member_kim3_p2": ""
+}
