@@ -151,3 +151,73 @@
    loadTranslations(currentLang); // 저장된 언어 또는 기본 언어 로드
 
 
+
+// 이 코드를 language.js 파일 또는 멤버 페이지 script 태그 안에 추가
+// 다른 DOMContentLoaded 리스너 안에 넣거나, 새로 만듭니다.
+
+document.addEventListener('DOMContentLoaded', () => { // 페이지 로드 완료 후 실행
+
+    // --- 기존 언어 전환 코드 시작 (예시 - language.js에 이미 있다면 이 부분은 생략) ---
+    /*
+    const langButtons = document.querySelectorAll('.lang-switcher button');
+    let currentLang = localStorage.getItem('preferredLang') || 'en';
+    let translations = {};
+    // ... loadTranslations, applyTranslations, updateLangButtons 함수 ...
+    // ... 언어 버튼 클릭 이벤트 리스너 ...
+    // ... 초기 언어 로드 ...
+    */
+    // --- 기존 언어 전환 코드 끝 ---
+
+
+    // --- ▼▼▼ 멤버 이름 드롭다운 로직 ▼▼▼ ---
+    const memberToggleBtn = document.getElementById('member-toggle-btn');
+    const memberDropdownList = document.getElementById('member-list');
+
+    // 해당 버튼과 목록이 현재 페이지에 있는지 확인
+    if (memberToggleBtn && memberDropdownList) {
+
+        // 버튼 클릭 시 드롭다운 토글
+        memberToggleBtn.addEventListener('click', (event) => {
+            event.stopPropagation(); // body 클릭 리스너에 영향 주지 않도록
+            const isHidden = memberDropdownList.hidden;
+            memberDropdownList.hidden = !isHidden; // hidden 속성 토글
+            memberToggleBtn.setAttribute('aria-expanded', !isHidden); // ARIA 상태 업데이트
+        });
+
+        // 드롭다운 외부 영역 클릭 시 드롭다운 닫기
+        document.addEventListener('click', (event) => {
+            if (!memberDropdownList.hidden && // 드롭다운이 열려 있고
+                !memberToggleBtn.contains(event.target) && // 클릭한 곳이 버튼이 아니고
+                !memberDropdownList.contains(event.target)) // 클릭한 곳이 드롭다운 목록도 아니면
+            {
+                memberDropdownList.hidden = true; // 드롭다운 숨김
+                memberToggleBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Escape 키 누르면 드롭다운 닫기
+        document.addEventListener('keydown', (event) => {
+             if (event.key === 'Escape' && !memberDropdownList.hidden) {
+                 memberDropdownList.hidden = true;
+                 memberToggleBtn.setAttribute('aria-expanded', 'false');
+             }
+        });
+
+         // 드롭다운 메뉴 안의 링크 클릭 시 드롭다운 닫기 (선택 사항)
+         memberDropdownList.addEventListener('click', (event) => {
+             if (event.target.tagName === 'A') {
+                 memberDropdownList.hidden = true;
+                 memberToggleBtn.setAttribute('aria-expanded', 'false');
+             }
+         });
+    }
+    // --- ▲▲▲ 멤버 이름 드롭다운 로직 끝 ▲▲▲ ---
+
+
+    // --- AOS 초기화 (member 페이지에도 AOS 사용 시) ---
+    if (typeof AOS !== 'undefined') { // AOS 라이브러리가 로드되었는지 확인
+       AOS.init({ once: true, duration: 600 });
+    }
+
+}); // DOMContentLoaded 끝
+
