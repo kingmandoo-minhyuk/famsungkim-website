@@ -61,7 +61,8 @@
     </section>
 
     <section id="latest-video" class="latest-video-section">
-        <div class="container"> <h2>Latest Video</h2>
+        <div class="container"> 
+           <h2>Latest Video</h2>
             <div class="video-wrapper aspect-ratio-16-9">
                 <div id="latest-youtube-player">
                     <p>Latest Video</p>
@@ -531,8 +532,34 @@
       });
     </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await fetch('/.netlify/functions/get-latest-video');
+      const data = await response.json();
 
-//언어변환버튼스크립트
+      if (data.videoId) {
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${data.videoId}`;
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+
+        document.getElementById('latest-youtube-player').innerHTML = '';
+        document.getElementById('latest-youtube-player').appendChild(iframe);
+      } else {
+        document.getElementById('latest-youtube-player').innerHTML = '<p>No video found.</p>';
+      }
+    } catch (error) {
+      console.error('Error loading latest video:', error);
+      document.getElementById('latest-youtube-player').innerHTML = '<p>Failed to load video.</p>';
+    }
+  });
+</script>
+
+
 
     <script src="language.js"></script>
     </body>
