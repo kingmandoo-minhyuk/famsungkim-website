@@ -1,5 +1,3 @@
-<script>
-
     const langButtons = document.querySelectorAll('.lang-switcher button');
 
     let currentLang = localStorage.getItem('preferredLang') || 'en'; // 저장된 언어 또는 기본값(en)
@@ -152,7 +150,4 @@
 
    loadTranslations(currentLang); // 저장된 언어 또는 기본 언어 로드
 
-
-
-</script>
 
