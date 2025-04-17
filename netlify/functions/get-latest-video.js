@@ -49,8 +49,8 @@ exports.handler = async (event, context) => {
     }
 
     // YouTube Data API v3 URLs
-    const SEARCH_URL = `https://www.youtube.com/watch?v=67stn7Pu7s41?part=snippet&channelId=<span class="math-inline">\{CHANNEL\_ID\}&maxResults\=</span>{MAX_RESULTS_TO_CHECK}&order=date&type=video&key=${API_KEY}`;
-    const VIDEOS_API_BASE_URL = `https://www.youtube.com/watch?v=67stn7Pu7s42?part=contentDetails&key=${API_KEY}&id=`; // Base URL for video details
+const SEARCH_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=${MAX_RESULTS_TO_CHECK}&order=date&type=video&key=${API_KEY}`;
+const VIDEOS_API_BASE_URL = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&key=${API_KEY}&id=`;
 
     try {
         // 1. Search for recent videos from the channel
@@ -78,7 +78,7 @@ exports.handler = async (event, context) => {
             }
 
             console.log(`[get-latest-video] Checking details for video ID: ${videoId}`);
-            let videoDetailsResponse = await fetch(`<span class="math-inline">\{VIDEOS\_API\_BASE\_URL\}</span>{videoId}`);
+            let videoDetailsResponse = await fetch(`${VIDEOS_API_BASE_URL}${videoId}`);
 
             if (!videoDetailsResponse.ok) {
                 // Log error but continue checking next video
