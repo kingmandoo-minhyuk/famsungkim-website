@@ -8,8 +8,21 @@
     padding: 0;
 }
 
-/* ----- 모바일 화면 헤더 레이아웃 조정 ----- */
+/* 멤버 페이지 헤더 오른쪽 컨트롤 그룹 */
+.header-controls-right {
+    display: flex; /* 내부 요소(소셜 아이콘, 언어 스위처)를 가로로 배치 */
+    align-items: center; /* 수직 가운데 정렬 */
+    gap: 20px; /* 소셜 아이콘 그룹과 언어 스위처 사이 간격 (조절 가능) */
+}
 
+/* 만약 .member-social 이나 .lang-switcher 에 큰 margin-left가 있었다면
+   여기서 0으로 초기화 필요할 수 있음 (gap으로 간격 조절) */
+.header-controls-right .member-social {
+    margin-left: 0;
+}
+.header-controls-right .lang-switcher {
+    margin-left: 0;
+}
 
     /* ★★★ 네비게이션 요소들이 줄바꿈 하도록 설정 ★★★ */
     .site-header nav {
@@ -763,7 +776,7 @@ body > .intro-section {
     color: #FF0000; /* 유튜브 색상 */
 }
 
-
+/* ----- 모바일 화면 헤더 레이아웃 조정 ----- */
 
 @media (max-width: 768px) { /* 화면 너비 768px 이하일 때 적용 (필요시 값 조절) */
     body > .intro-section {
@@ -1027,6 +1040,11 @@ main {
         width: 100%;
         height: 100%;
     }
+
+
+
+
+
 
 
 /* ----- 푸터 ----- */

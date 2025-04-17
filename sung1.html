@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sung1 - Father</title>
+    <title data-lang-key="member_sung1_name">Sung1 - Father</title>
     <link rel="stylesheet" href="style.css"> <!-- 메인 페이지와 동일한 CSS 사용 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -11,13 +11,23 @@
 
 </head>
 <body>
-    <header class="member-page-header"> <div class="container header-container"> <div class="member-info"> <h1>Sung 1</h1>
+    <header class="member-page-header"> 
+        <div class="container header-container">
+           <div class="member-info"> 
+               <h1>Sung 1</h1>
                 <p class="back-link"><a href="index.html">back to main</a></p>
             </div>
-            <div class="member-social"> <a href="https://www.instagram.com/famsungkim" target="_blank" rel="noopener noreferrer" title="Sung1 Instagram" aria-label="Sung1 Instagram profile">
-                    <i class="fa-brands fa-instagram"></i> </a>
+            <div class="header-controls-right">
+                <div class="member-social">
+                    <a href="https://www.instagram.com/famsungkim" target="_blank" rel="noopener noreferrer" title="Sung1 Instagram" aria-label="Sung1 Instagram profile">
+                        <i class="fa-brands fa-instagram"></i> 
+                    </a>
                 </div>
-        </div>
+        <div class="lang-switcher">
+        <button data-lang="en">EN</button>
+        <button data-lang="ko">KO</button>
+        <button data-lang="es">ES</button>
+    </div>    </div>
     </header>
 
     <main>
@@ -68,18 +78,11 @@
                 <img src="images/profile_sung1.jpg" alt="성1 아빠 프로필 사진">
             </div>
             <div class="bio-text" data-aos="fade-up">
-                <p>
-                    Our SUNG1 isn't usually talkative, but you can feel warmth in his every action. 
-While expressing himself might not be his strong suit, he possesses deep affection and is like a steadfast pillar, 
-silently supporting our family. If you've watched the Netflix series 'When Life Gives You Tangerines', 
-you could say SUNG1 is the real-life embodiment of the main character, Yang Gwan-sik.
+                <p data-lang-key="member_sung1_p1">
+                    Our SUNG1 isn't usually talkative, but you can feel warmth in his every action. While expressing himself might not be his strong suit, he possesses deep affection and is like a steadfast pillar, silently supporting our family. If you've watched the Netflix series 'When Life Gives You Tangerines', you could say SUNG1 is the real-life embodiment of the main character, Yang Gwan-sik.
                 </p>
-                <p>
-                    It seems like anything SUNG1 touches gets fixed effortlessly; 
-we're very familiar with the sight of him diligently fixing or making things around the house. 
-In fact, he's also a highly skilled and versatile man, holding an impressive 11 national technical certifications. 
-With a warm heart hidden beneath his quiet exterior and his outstanding practical skills, 
-he steadfastly watches over us – SUNG1 is truly wonderful.
+                <p data-lang-key="member_sung1_p2">
+                    It seems like anything SUNG1 touches gets fixed effortlessly; we're very familiar with the sight of him diligently fixing or making things around the house. In fact, he's also a highly skilled and versatile man, holding an impressive 11 national technical certifications. With a warm heart hidden beneath his quiet exterior and his outstanding practical skills, he steadfastly watches over us – SUNG1 is truly wonderful.
                     </p>
             </div>
         </div> </div> </section>
@@ -131,5 +134,87 @@ he steadfastly watches over us – SUNG1 is truly wonderful.
     <script>
       AOS.init(); // AOS 라이브러리 실행
     </script>
+
+<script>
+    const langButtons = document.querySelectorAll('.lang-switcher button');
+    let currentLang = localStorage.getItem('preferredLang') || 'en'; // 저장된 언어 또는 기본값(en)
+    let translations = {}; // 로드된 번역 데이터 저장
+
+    // 번역 데이터 로드 함수
+    async function loadTranslations(lang) {
+        try {
+            const response = await fetch(`/locales/${lang}.json`); // 해당 언어 JSON 파일 요청
+            if (!response.ok) {
+                throw new Error(`Failed to load ${lang}.json`);
+            }
+            translations = await response.json(); // JSON 데이터 저장
+            applyTranslations(); // 번역 적용 함수 호출
+            updateLangButtons(lang); // 버튼 활성 상태 업데이트
+            localStorage.setItem('preferredLang', lang); // 선택 언어 저장
+        } catch (error) {
+            console.error('Error loading translation:', error);
+            // 기본 언어(en)로 재시도 또는 오류 메시지 표시
+            if (lang !== 'en') loadTranslations('en');
+        }
+    }
+
+    // 페이지 텍스트에 번역 적용 함수
+    function applyTranslations() {
+        document.querySelectorAll('[data-lang-key]').forEach(element => {
+            const key = element.getAttribute('data-lang-key');
+            // HTML 태그를 포함해야 하는 경우 innerHTML 사용 (주의 필요)
+            if (key === 'hero_title') { // 예시: <br> 태그 포함
+                element.innerHTML = translations[key] || element.dataset.defaultText || '';
+            } else {
+                // dataset.defaultText 는 초기 로딩 시 원본 텍스트 저장용 (선택적)
+                element.textContent = translations[key] || element.dataset.defaultText || '';
+            }
+
+            // 버튼 텍스트 등 속성값 변경이 필요하면 여기서 추가 처리
+             if (element.id === 'load-more-btn' && !element.disabled) {
+                 element.textContent = translations[key];
+             } else if (element.id === 'load-more-btn' && element.disabled) {
+                 element.textContent = translations['all_shown_btn']; // 모두 표시됨 키 사용
+             }
+        });
+        // 페이지 제목 등 추가적인 부분 업데이트
+        if (translations['site_title']) {
+             document.title = translations['site_title'];
+        }
+    }
+
+    // 언어 버튼 활성 상태 업데이트 함수
+    function updateLangButtons(activeLang) {
+         langButtons.forEach(button => {
+             if (button.getAttribute('data-lang') === activeLang) {
+                 button.classList.add('active-lang');
+             } else {
+                 button.classList.remove('active-lang');
+             }
+         });
+    }
+
+    // 언어 버튼 클릭 이벤트 설정
+    langButtons.forEach(button => {
+        // 초기 텍스트 저장 (선택적)
+        const key = button.getAttribute('data-lang-key');
+        if (key) button.dataset.defaultText = button.textContent;
+
+        button.addEventListener('click', () => {
+            const lang = button.getAttribute('data-lang');
+            loadTranslations(lang);
+        });
+    });
+
+   // 초기 페이지 로드 시 언어 적용
+   // 페이지 로딩 시 모든 요소의 초기 텍스트를 저장 (선택적이지만 권장)
+   document.querySelectorAll('[data-lang-key]').forEach(element => {
+        element.dataset.defaultText = element.innerHTML; // 또는 textContent
+   });
+   loadTranslations(currentLang); // 저장된 언어 또는 기본 언어 로드
+
+</script>
+
+
 </body>
 </html>
