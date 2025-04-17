@@ -10,19 +10,7 @@
 
 /* ----- 모바일 화면 헤더 레이아웃 조정 ----- */
 
-@media (max-width: 768px) { /* 화면 너비 768px 이하일 때 적용 (필요시 값 조절) */
-    body > .intro-section {
-        /* 위 1단계에서 측정한 실제 모바일 헤더 높이 + 원하는 간격 */
-        padding-top: 150px;
-                                    }
-    /* 헤더 컨테이너 좌우 여백은 유지하거나 약간 조절 */
-    .site-header .container.header-container {
-        padding-left: 15px;
-        padding-right: 15px;
-        /* 필요하다면 컨테이너 자체도 줄바꿈 허용 */
-        /* flex-wrap: wrap; */
-    }
-}
+
     /* ★★★ 네비게이션 요소들이 줄바꿈 하도록 설정 ★★★ */
     .site-header nav {
         flex-wrap: wrap; /* 공간 부족 시 다음 줄로 넘김 */
@@ -774,6 +762,23 @@ body > .intro-section {
 .social-icons a:hover i.fa-youtube {
     color: #FF0000; /* 유튜브 색상 */
 }
+
+
+
+@media (max-width: 768px) { /* 화면 너비 768px 이하일 때 적용 (필요시 값 조절) */
+    body > .intro-section {
+        /* 위 1단계에서 측정한 실제 모바일 헤더 높이 + 원하는 간격 */
+        padding-top: 150px;
+                                    }
+    /* 헤더 컨테이너 좌우 여백은 유지하거나 약간 조절 */
+    .site-header .container.header-container {
+        padding-left: 15px;
+        padding-right: 15px;
+        /* 필요하다면 컨테이너 자체도 줄바꿈 허용 */
+        /* flex-wrap: wrap; */
+    }
+}
+
 
 /* ----- 소개 섹션 스타일 ----- */
 .intro-section {
