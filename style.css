@@ -8,6 +8,62 @@
     padding: 0;
 }
 
+/* style.css - 최신 영상 관련 부분 */
+
+/* 16:9 비율 컨테이너 (기존 유지) */
+.video-wrapper.aspect-ratio-16-9 {
+    position: relative;
+    padding-bottom: 20%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #eee;
+    border: 1px solid #ddd;
+}
+
+/* 플레이스홀더 div (#latest-youtube-player)가 래퍼를 꽉 채우도록 */
+.video-wrapper.aspect-ratio-16-9 #latest-youtube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* 플레이스홀더 div '안에' 삽입된 iframe이 해당 div를 꽉 채우도록 */
+.video-wrapper.aspect-ratio-16-9 #latest-youtube-player iframe {
+     display: block;
+     width: 100%;
+     height: 100%;
+     border: 0;
+}
+
+/* 플레이스홀더 안의 초기 p 태그 스타일 */
+.video-wrapper.aspect-ratio-16-9 #latest-youtube-player p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+}
+
+/* ★★★ 이전에 있었을 수 있는 아래 규칙은 삭제하거나 위처럼 분리해야 함 ★★★ */
+/*
+.video-wrapper.aspect-ratio-16-9 iframe,
+.video-wrapper.aspect-ratio-16-9 #latest-youtube-player {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+}
+*/
+
+/* ★★★ 이전에 있었을 수 있는 아래 규칙은 삭제하거나 위처럼 분리해야 함 ★★★ */
+/*
+.video-wrapper.aspect-ratio-16-9 iframe,
+.video-wrapper.aspect-ratio-16-9 #latest-youtube-player {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+}
+*/
 
 /* 이미지 태그로 추가된 소셜 아이콘 스타일 */
 .member-page-header .member-social img.custom-social-icon {
@@ -234,43 +290,6 @@
     margin-bottom: 40px;
 }
 
-/* 16:9 비율 영상 컨테이너 (재사용 가능) */
-.video-wrapper.aspect-ratio-16-9 {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-    max-width: 800px; /* 영상 최대 너비 (조절 가능) */
-    margin: 0 auto; /* 가운데 정렬 */
-    background: #eee; /* 로딩 중 배경 */
-    border: 1px solid #ddd; /* 테두리 (선택 사항) */
-}
-
-/* 2. 플레이스홀더 div '안에' 삽입될 iframe이 그 부모(div)를 꽉 채우도록 설정 */
-.video-wrapper.aspect-ratio-16-9 #latest-youtube-player iframe {
-     display: block; /* iframe은 inline 요소일 수 있으므로 block으로 변경 */
-     width: 100%;
-     height: 100%;
-     border: 0; /* 혹시 모를 테두리 제거 */
-}
-
-.video-wrapper.aspect-ratio-16-9 iframe,
-.video-wrapper.aspect-ratio-16-9 #latest-youtube-player { /* ID 사용 시 */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-.video-wrapper.aspect-ratio-16-9 #latest-youtube-player p {
-    /* 로딩 메시지 스타일링 (선택 사항) */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #666;
-}
 
 /* ----- 모바일 화면 헤더 간격 조정 ----- */
 
