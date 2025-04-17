@@ -8,6 +8,27 @@
     padding: 0;
 }
 
+
+/* 이미지 태그로 추가된 소셜 아이콘 스타일 */
+.member-page-header .member-social img.custom-social-icon {
+    width: 28px; /* ★★★ 다른 아이콘(예: 인스타그램) 크기와 비슷하게 조절 ★★★ */
+    height: 28px; /* ★★★ 다른 아이콘(예: 인스타그램) 크기와 비슷하게 조절 ★★★ */
+    vertical-align: middle; /* 다른 아이콘과 세로 정렬 맞춤 */
+    /* 필요하다면 다른 스타일(예: border-radius) 추가 */
+}
+
+/* 이미지 아이콘 호버 효과 (선택 사항) */
+.member-page-header .member-social a.webtoon-link:hover img.custom-social-icon {
+    opacity: 0.8; /* 예시: 마우스 올리면 약간 투명하게 */
+}
+
+/* .member-social 에 flex와 gap이 적용되어 있는지 확인 (아이콘 간격용) */
+.member-page-header .member-social {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 아이콘 사이 간격 */
+}
+
 /* ----- 멤버 페이지 헤더 드롭다운 스타일 ----- */
 
 /* 드롭다운 전체를 감싸는 컨테이너 (위치 기준) */
