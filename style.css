@@ -14,7 +14,7 @@
     body > .intro-section {
         /* 위 1단계에서 측정한 실제 모바일 헤더 높이 + 원하는 간격 */
         padding-top: 150px;
-}
+                                    }
     /* 헤더 컨테이너 좌우 여백은 유지하거나 약간 조절 */
     .site-header .container.header-container {
         padding-left: 15px;
@@ -22,7 +22,7 @@
         /* 필요하다면 컨테이너 자체도 줄바꿈 허용 */
         /* flex-wrap: wrap; */
     }
-
+}
     /* ★★★ 네비게이션 요소들이 줄바꿈 하도록 설정 ★★★ */
     .site-header nav {
         flex-wrap: wrap; /* 공간 부족 시 다음 줄로 넘김 */
