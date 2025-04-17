@@ -1,92 +1,134 @@
 // netlify/functions/get-latest-video.js
 
-// XML 파서 라이브러리 가져오기
-const { XMLParser } = require("fast-xml-parser");
+// Helper function to parse ISO 8601 duration (e.g., PT1M30S) into seconds
+function parseDuration(duration) {
+    // Simple regex for HMS, good enough for >60s check
+    const regex = /P(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?)?/;
+    const parts = duration.match(regex);
 
-// Netlify 함수의 기본 핸들러
+    // Check if it matches PT...S format at least, even if 0 seconds
+    if (!parts) {
+         // Check if it contains Y, M, D, W - these are definitely long
+         if (duration.includes('Y') || duration.includes('M') || duration.includes('W') || duration.includes('D')) {
+             return 99999; // Consider it long
+         }
+         console.warn(`[parseDuration] Could not parse duration format: ${duration}`);
+         return 0; // Assume 0 if no HMS part found and no YMDW
+    }
+
+    const hours = parseInt(parts[1] || 0);
+    const minutes = parseInt(parts[2] || 0);
+    const seconds = parseFloat(parts[3] || 0);
+
+    // If Y/M/D/W were present, the earlier check would return 99999
+     if (duration.includes('Y') || duration.includes('M') || duration.includes('W') || duration.includes('D')) {
+          return 99999;
+     }
+
+    return (hours * 3600) + (minutes * 60) + seconds;
+}
+
 exports.handler = async (event, context) => {
-    // 가져올 유튜브 채널 RSS 피드 주소 (@famsungkim 핸들 사용)
-    const RSS_URL = 'https://www.youtube.com/feeds/videos.xml?channel_id=UClJrRTHSt2vjrDaipO9TD1Q';
-    let videoId = null; // 비디오 ID 저장 변수
+    // ★★★ Get API Key from Environment Variable ★★★
+    const API_KEY = process.env.YOUTUBE_API_KEY;
+    // ★★★ Your Channel ID ★★★
+    const CHANNEL_ID = 'UClJrRTHSt2vjrDaipO9TD1Q';
+    // How many recent videos to check to find a long-form one
+    const MAX_RESULTS_TO_CHECK = 15;
+    // Minimum duration in seconds for a video *not* to be counted as a Short
+    const MIN_DURATION_SECONDS = 61; // Videos >= 61 seconds are kept
+
+    // Check if API Key is configured
+    if (!API_KEY) {
+        console.error("FATAL: YouTube API Key (YOUTUBE_API_KEY) is not defined in Netlify environment variables.");
+        return {
+            statusCode: 500,
+            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+            body: JSON.stringify({ error: 'Server configuration error: YouTube API Key is missing.' }),
+        };
+    }
+
+    // YouTube Data API v3 URLs
+    const SEARCH_URL = `https://www.youtube.com/watch?v=67stn7Pu7s41?part=snippet&channelId=<span class="math-inline">\{CHANNEL\_ID\}&maxResults\=</span>{MAX_RESULTS_TO_CHECK}&order=date&type=video&key=${API_KEY}`;
+    const VIDEOS_API_BASE_URL = `https://www.youtube.com/watch?v=67stn7Pu7s42?part=contentDetails&key=${API_KEY}&id=`; // Base URL for video details
 
     try {
-        // 1. RSS 피드 가져오기
-        console.log(`Workspaceing RSS feed from: ${RSS_URL}`);
-        // Netlify 함수 환경에서는 node-fetch 없이 바로 fetch 사용 가능
-        const response = await fetch(RSS_URL);
+        // 1. Search for recent videos from the channel
+        console.log(`[get-latest-video] Searching for recent videos for channel: ${CHANNEL_ID}`);
+        let searchResponse = await fetch(SEARCH_URL);
 
-        // 응답 상태 확인
-        if (!response.ok) {
-            console.error(`Failed to fetch RSS feed. Status: ${response.status}, StatusText: ${response.statusText}`);
-            const errorBody = await response.text(); // 오류 응답 내용 확인
-            console.error("Error response body:", errorBody);
-            throw new Error(`Failed to fetch RSS feed: ${response.statusText} (Status: ${response.status})`);
+        if (!searchResponse.ok) {
+             const errorBody = await searchResponse.text();
+             console.error(`[get-latest-video] Youtube API Error: ${searchResponse.status} ${searchResponse.statusText}`, errorBody);
+             throw new Error(`Youtube API failed with status ${searchResponse.status}`);
+        }
+        let searchData = await searchResponse.json();
+        console.log(`[get-latest-video] Found ${searchData.items ? searchData.items.length : 0} potential videos.`);
+
+        if (!searchData.items || searchData.items.length === 0) {
+            throw new Error('No recent videos found via YouTube API.');
         }
 
-        // XML 텍스트 데이터 읽기
-        const xmlData = await response.text();
-        console.log("Successfully fetched RSS feed.");
-
-        // 2. XML 파싱하기
-        const parserOptions = {
-            ignoreAttributes: false, // 속성 무시 안 함
-            attributeNamePrefix : "", // 속성 접두사 사용 안 함
-            parseAttributeValue : true, // 속성 값 파싱
-            allowBooleanAttributes: true,
-            trimValues: true,
-            ignoreDeclaration: true,
-        };
-        const parser = new XMLParser(parserOptions);
-        const feedObject = parser.parse(xmlData);
-        console.log("Attempting to parse XML...");
-
-        // 3. 최신 비디오 ID 추출하기 (피드 구조 확인 필요)
-        if (feedObject && feedObject.feed && feedObject.feed.entry) {
-            const entries = Array.isArray(feedObject.feed.entry) ? feedObject.feed.entry : [feedObject.feed.entry];
-            if (entries.length > 0) {
-                // 가장 첫 번째 항목(최신)에서 비디오 ID 찾기
-                if (entries[0]['yt:videoId']) {
-                    videoId = entries[0]['yt:videoId'];
-                } else if (entries[0].id && typeof entries[0].id === 'string' && entries[0].id.includes('yt:video:')) {
-                    // yt:videoId 가 없는 경우 id 에서 추출 시도 (예: yt:video:VIDEO_ID)
-                    videoId = entries[0].id.split(':').pop();
-                }
-                console.log(`Found video ID: ${videoId}`);
-            } else {
-                 console.warn("No <entry> found in the feed.");
+        // 2. Iterate through search results to find the first video longer than MIN_DURATION_SECONDS
+        for (const item of searchData.items) {
+            const videoId = item.id?.videoId; // Use optional chaining
+            if (!videoId) {
+                console.log("[get-latest-video] Skipping item with no videoId:", item);
+                continue;
             }
-        } else {
-            console.warn("Feed structure unexpected. Could not find feed.entry.");
-            // console.log("Parsed Feed Object for debugging:", JSON.stringify(feedObject, null, 2)); // 필요시 구조 확인용
-        }
 
-        if (!videoId) {
-             throw new Error('Could not extract video ID from RSS feed.');
-        }
+            console.log(`[get-latest-video] Checking details for video ID: ${videoId}`);
+            let videoDetailsResponse = await fetch(`<span class="math-inline">\{VIDEOS\_API\_BASE\_URL\}</span>{videoId}`);
 
-        // 4. 성공 응답 반환 (JSON 형식)
-        console.log("Returning successful response with videoId:", videoId);
-        return {
-            statusCode: 200,
-            headers: {
-                // 중요: 실제 서비스에서는 Netlify 사이트 주소만 허용하는 것이 더 안전합니다.
-                'Access-Control-Allow-Origin': '*', // 지금은 모든 도메인에서의 요청 허용
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ videoId: videoId }), // JSON 형태로 videoId 전달
-        };
+            if (!videoDetailsResponse.ok) {
+                // Log error but continue checking next video
+                console.warn(`[get-latest-video] Could not fetch details for video ${videoId}. Status: ${videoDetailsResponse.status}. Skipping.`);
+                continue;
+            }
+            let videoDetailsData = await videoDetailsResponse.json();
+
+            // Extract duration if available
+            const durationISO = videoDetailsData.items?.[0]?.contentDetails?.duration; // Use optional chaining
+
+            if (durationISO) {
+                const durationSeconds = parseDuration(durationISO);
+                console.log(`[get-latest-video] Video ${videoId} duration: <span class="math-inline">\{durationISO\} \(\~</span>{durationSeconds} seconds)`);
+
+                // Check if it meets the minimum duration
+                if (durationSeconds >= MIN_DURATION_SECONDS) {
+                    console.log(`[get-latest-video] Success! Found latest long-form video: ${videoId}`);
+                    // Found the first long-form video, return it!
+                    return {
+                        statusCode: 200,
+                        headers: {
+                            'Access-Control-Allow-Origin': '*', // Adjust for production if needed
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ videoId: videoId }),
+                    };
+                } else {
+                     console.log(`[get-latest-video] Video ${videoId} is shorter than ${MIN_DURATION_SECONDS}s. Skipping.`);
+                }
+            } else {
+                 console.warn(`[get-latest-video] Duration not found for video ${videoId}. Skipping.`);
+            }
+        } // End of for loop
+
+        // 3. If loop finishes without finding a suitable video
+        console.warn(`[get-latest-video] No video longer than ${MIN_DURATION_SECONDS}s found within the last ${MAX_RESULTS_TO_CHECK} uploads.`);
+        throw new Error(`No recent long-form video found within the checked range.`);
 
     } catch (error) {
-        // 5. 오류 발생 시 오류 응답 반환
-        console.error("Error processing request:", error);
+        // 4. Catch any errors during the process
+        console.error("[get-latest-video] Error processing request:", error);
         return {
             statusCode: 500,
              headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ error: error.message || 'Failed to process request' }),
+            // Provide a more generic error message to the client for security
+            body: JSON.stringify({ error: 'Failed to retrieve latest video.' }),
         };
     }
 };
