@@ -1,11 +1,51 @@
 {
-  "intro_title": "¿Quizás nos has encontrado durante nuestros viajes?",
-  "intro_p1": "¡Salúdanos si nos ves! ¡Nos encantaría conocerte mejor!",
+  "intro_title": "¿Quizás te has cruzado con nosotros durante nuestros viajes?",
+  "intro_p1": "¡Por favor, salúdanos si nos ves! ¡Realmente nos gustaría conocerte mejor!",
   "intro_p2": "Somos una familia que dejó Corea en mayo de 2025 para comenzar un viaje por el mundo.",
-  "intro_p3": "Papá y las dos hijas son de apellido 'Sung', mientras que Mamá y los dos yernos son de apellido 'Kim', ¡así que nos convertimos en la 'Familia Sung y Kim'!",
+  "intro_p3": "Papá y las dos hijas tienen el apellido 'Sung', mientras que Mamá y los dos yernos tienen el apellido 'Kim', así que nos convertimos en la 'Familia Sung y Kim'.",
   "intro_p4": "¡También puedes vernos en YouTube! @famsungkim",
+
+  "hero_title": "\"¡Sí! Somos<br>FAMILY!\"",
+  "hero_subtitle": "¡Y estamos viajando por el mundo!",
   "who_we_are_title": "¿Quiénes somos?",
-  "member_sung1_name": "Sung1 (Papá)",
-  "member_sung1_desc": "El pilar confiable del viaje. Está a cargo de la planificación, la conducción y de tomar fotos geniales.",
-  "back_to_main_link": "Volver al inicio"
+
+  "load_more_btn": "Cargar más",
+  "all_shown_btn": "No hay más",
+  "back_to_main_link": "Volver al inicio",
+
+  "member_sung1_name": "Sung1 - Papá",
+  "member_sung2_name": "Sung2 - Hija Mayor",
+  "member_sung3_name": "Sung3 - Hija Menor",
+
+  "member_kim1_name": "Kim1 - Mamá",
+  "member_kim2_name": "Kim2 - Yerno",
+  "member_kim3_name": "Kim3 - Yerno",
+
+  "member_sung1_p1": "Nuestro SUNG1 no suele hablar mucho, pero puedes sentir calidez en cada una de sus acciones. Aunque expresarse no sea su fuerte, posee un profundo afecto y es como un pilar firme, apoyando silenciosamente a nuestra familia. Si has visto la serie de Netflix 'When Life Gives You Tangerines', podrías decir que SUNG1 es la encarnación real del personaje principal, Yang Gwan-sik.",
+  "member_sung1_p2": "Parece que cualquier cosa que SUNG1 toca se arregla sin esfuerzo; estamos muy familiarizados con verlo arreglando o haciendo cosas diligentemente por la casa. De hecho, también es un hombre muy hábil y versátil, con 11 impresionantes certificaciones técnicas nacionales. Con un corazón cálido escondido bajo su exterior tranquilo y sus sobresalientes habilidades prácticas, nos cuida firmemente – SUNG1 es realmente maravilloso.",
+
+  "member_sung2_p1": "Nuestra hija mayor, SUNG2, es tranquila, responsable y posee una personalidad muy metódica y lógica. Es tan lógica que sus apodos en la familia son 'Robot' o 'IA'.",
+  "member_sung2_p2": "Las sobresalientes habilidades de planificación y ejecución de SUNG2 realmente brillan en el actual viaje mundial de nuestra familia. Ella tomó la iniciativa en manejar toda la planificación y reservas para este gran proyecto. Detrás de este exterior aparentemente meticuloso se esconde una hermana mayor afectuosa que aprecia y ama profundamente a su hermana menor. Además, es la hija mayor confiable en la que nuestros padres más confían.",
+  "member_sung2_p3": "SUNG2 es una persona talentosa que se especializó en Arquitectura en la Universidad de Hanyang, reconocida como la mejor escuela de Corea en ese campo. Después de graduarse, trabajó como una arquitecta capaz en Corea, pero ahora ha dejado temporalmente su carrera a un lado para liderar a toda nuestra familia, haciendo realidad el maravilloso desafío de un viaje mundial.",
+  "member_sung2_p4": "Contrario a sus apodos de 'Robot' o 'IA', SUNG2 posee una rica sensibilidad artística en su interior. Disfruta capturando hermosos paisajes con su cámara, revelando su faceta de fotógrafa con un ojo delicado. Poseyendo habilidades meticulosas de planificación, un corazón cálido y sensibilidad artística, todo en uno, esta es SUNG2, la líder confiable del viaje de nuestra familia.",
+
+  "member_sung3_p1": "¡SUNG3, que es como la 'mutación' y la 'vitamina humana' de nuestra familia! En nuestro hogar relativamente tranquilo, donde Papá (SUNG1), Mamá (KIM1) y la hermana mayor (SUNG2) son más bien callados, SUNG3 es verdaderamente una fuente de vitalidad, iluminando la atmósfera con su encanto chispeante.",
+  "member_sung3_p2": "Ella cumple perfectamente el papel de animadora de la familia; con su personalidad brillante y vivaz, tiene una energía especial que rápidamente atrae a todos a su alrededor a una atmósfera divertida, como de fiesta. Aunque sigue y adora a su hermana mayor SUNG2 más que nadie, también es un espíritu libre adorable cuya inmensa curiosidad por todo significa que los consejos lógicos de su hermana a veces le entran por un oído y le salen por el otro.",
+  "member_sung3_p3": "SUNG3 se especializó en diseño en Corea y tiene bastante talento; después de graduarse, trabajó activamente como diseñadora de ropa para una compañía deportiva de renombre mundial. Ahora, sin embargo, ha dejado temporalmente su vida como diseñadora a un lado y, junto con su familia, está aprendiendo y experimentando con entusiasmo el mundo más amplio, con el globo como escenario.",
+  "member_sung3_p4": "¡Las alegres aventuras de SUNG3, la enérgica hija menor que inyecta diversión impredecible y vitalidad en nuestra tranquila familia, continúan a lo largo de nuestro viaje mundial!",
+
+  "member_kim1_p1": "¡El tesoro de nuestra familia, KIM1, que es como una 'chica vivaz de corazón cálido'! Aunque usualmente parece tranquila y meticulosa, esconde en su interior un espíritu alegre y juvenil que ama la diversión más que nadie y está llena de humor.",
+  "member_kim1_p2": "KIM1 es la ama de casa definitiva, asegurándose diligentemente de que los seis miembros de la familia estén bien alimentados con comidas deliciosas y preparadas con amor todos los días. Además, es el apoyo más fuerte para todos nosotros, siempre escuchando atentamente a sus hijas y yernos y ofreciéndoles un apoyo inquebrantable.",
+  "member_kim1_p3": "Uno de los talentos ocultos de KIM1 es su asombrosa habilidad para la costura; ¡es tan hábil que si se lo propone, puede confeccionar un hermoso Hanbok (vestido tradicional coreano) ella sola! Reflejando su amor por las flores y las plantas, es una creadora naturalmente dotada ('manos de oro', como decimos en Corea) que utiliza su toque delicado para crear bolsos únicos y hermosos y accesorios encantadores de tela.",
+  "member_kim1_p4": "Poseyendo un corazón cálido, alegría juvenil, increíble destreza y devoción inquebrantable a su familia, todo a la vez – esta es la verdaderamente maravillosa KIM1.",
+
+  "member_kim2_p1": "Si conoces a KIM2 por primera vez, podría pasar bastante tiempo antes de que lo oigas hablar. Eso es porque usualmente es bastante taciturno y callado. Sin embargo, una vez que empieza a hablar, te encontrarás escuchando atentamente los profundos pensamientos internos ocultos bajo su silencio, y pronto querrás escuchar más de lo que tiene que decir.",
+  "member_kim2_p2": "KIM2 es muy intelectual y culto – verdaderamente un '뇌섹남 (Nae-sek-nam)' como decimos en Corea (alguien cuya inteligencia es encantadora). Posee una mente brillante, habiéndose graduado de la Universidad Nacional de Seúl, ampliamente considerada como la mejor universidad de Corea. Una de sus habilidades asombrosas son los idiomas; además del coreano, por supuesto, habla con fluidez inglés, español, chino y japonés – ¡un total de 5 idiomas, lo que lo convierte en un 'traductor humano'!",
+  "member_kim2_p3": "Normalmente disfruta escuchando música tranquilamente o leyendo libros en inglés durante su tiempo libre, pero recientemente también ha mostrado un lado inesperado, enganchándose a ver YouTube y jugar videojuegos. Apropiadamente para un amante de la música, en este viaje familiar mundial, también está cumpliendo hábilmente el papel de director musical, responsable de las listas de reproducción que enriquecen nuestro viaje.",
+  "member_kim2_p4": "Este fue KIM2, el encantador yerno mayor, escondiendo profundo intelecto, versatilidad y calidez bajo su exterior tranquilo.",
+
+  "member_kim3_p1": "¿Quizás el dicho 'Dios los cría y ellos se juntan' es cierto? La enérgica SUNG3 trajo a casa a KIM3 – un hombre igual a ella, o quizás poseedor de un encanto aún más chispeante – para conocer a SUNG1 y KIM1.",
+  "member_kim3_p2": "Con su personalidad humorística, afectuosa y brillante, KIM3, junto a su esposa SUNG3, es como la mitad de un dúo dinámico responsable de animar la atmósfera de esta ¿tranquila? familia. Además, actúa como el Director Creativo de la familia, haciéndose cargo de todas las actividades creativas. Supervisa todo, desde la edición de los videos del canal de YouTube familiar y la creación del sitio web hasta la producción y gestión de todo el contenido multimedia relacionado con este viaje mundial, como fotos y videos.",
+  "member_kim3_p3": "Proviene de un trasfondo como artista que serializó cómics digitales populares llamados 'webtoons' en Corea. Habiendo completado con éxito su serie, ahora vierte toda su pasión en documentar y compartir las preciosas experiencias del viaje mundial de la familia a través de contenido multimedia atractivo. (Si quieres ver su trabajo, haz clic en el logo en la parte superior del sitio)",
+  "member_kim3_p4": "Sin embargo, hay un giro interesante en el brillante y sociable KIM3: ¡afirma ser, de hecho, 'más introvertido que nadie'! Según él, desarrolló su actual comportamiento extrovertido a través de un esfuerzo consciente, но quizás solo KIM3 conoce la historia completa. Tal vez cuando te encontraste con esta familia, KIM3 fue quien se te acercó primero. Le encanta genuinamente escuchar las historias de la gente. (¡Aunque guarda el pequeño secreto de que hacerlo agota su energía bastante rápido!)"
 }
