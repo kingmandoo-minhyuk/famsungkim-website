@@ -13,13 +13,13 @@
 /* 16:9 비율 컨테이너 (기존 유지) */
 .video-wrapper.aspect-ratio-16-9 {
     position: relative;
-    padding-bottom: 20%; /* 16:9 */
-    height: 0;
-    overflow: hidden;
-    max-width: 800px;
+    width: 100%;
+    max-width: 1280px; /* 데스크탑 기준 적당한 최대 너비 */
+    aspect-ratio: 16 / 9; /* 비율 유지의 핵심 */
     margin: 0 auto;
     background: #eee;
     border: 1px solid #ddd;
+    overflow: hidden;
 }
 
 /* 플레이스홀더 div (#latest-youtube-player)가 래퍼를 꽉 채우도록 */
@@ -40,13 +40,15 @@
      border: 0;
 }
 
-/* 플레이스홀더 안의 초기 p 태그 스타일 */
+/* 로딩 중 표시용 텍스트 스타일 */
 .video-wrapper.aspect-ratio-16-9 #latest-youtube-player p {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #666;
+    font-size: 1rem;
+    text-align: center;
 }
 
 /* ★★★ 이전에 있었을 수 있는 아래 규칙은 삭제하거나 위처럼 분리해야 함 ★★★ */
@@ -246,6 +248,10 @@
         width: 28px;
         height: 18px;
         margin-left: 5px;
+    }
+
+    .video-wrapper.aspect-ratio-16-9 #latest-youtube-player p {
+        font-size: 0.9rem;
     }
 }
 
