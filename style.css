@@ -11,7 +11,10 @@
 /* ----- 모바일 화면 헤더 레이아웃 조정 ----- */
 
 @media (max-width: 768px) { /* 화면 너비 768px 이하일 때 적용 (필요시 값 조절) */
-
+    body > .intro-section {
+        /* 위 1단계에서 측정한 실제 모바일 헤더 높이 + 원하는 간격 */
+        padding-top: 130px;
+}
     /* 헤더 컨테이너 좌우 여백은 유지하거나 약간 조절 */
     .site-header .container.header-container {
         padding-left: 15px;
